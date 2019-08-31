@@ -1,5 +1,6 @@
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu, Icon, Button } from 'antd';
 import React from 'react';
+import tr from './assets/flags/tr.png';
 
 const { Header, Sider, Content } = Layout;
 
@@ -21,8 +22,8 @@ class SiderDemo extends React.Component {
           <div className="logo" />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
             <Menu.Item key="1">
-              <Icon type="user" />
-              <span>nav 1</span>
+              <Icon style={{fontSize: '20px'}} type="ant-cloud" />
+              <span>Popular Cities</span>
             </Menu.Item>
             <Menu.Item key="2">
               <Icon type="video-camera" />
@@ -50,7 +51,23 @@ class SiderDemo extends React.Component {
               minHeight: 280,
             }}
           >
-            Content
+            <Button type="primary" style={{minWidth: '120px'}}>
+              <div>
+                <img src={tr} style={{height: "60%"}} alt={'no flag'} />
+                {' '}
+                {'Istanbul'}
+              </div>
+            </Button>
+            <div style={{marginTop: '5px'}}>
+            <Button type="primary" style={{minWidth: '120px'}}>
+              <div>
+                <img src={tr} style={{height: "60%"}} alt={'no flag'} />
+                {' '}
+                {'London'}
+              </div>
+            </Button>
+            </div>
+            
           </Content>
         </Layout>
       </Layout>
