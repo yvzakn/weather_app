@@ -1,8 +1,6 @@
-import { Layout, Menu, Icon, Button } from 'antd';
+import { Layout, Menu, Icon } from 'antd';
 import React from 'react';
-import tr from './assets/flags/tr.png';
-import eng from './assets/flags/eng.png';
-import fr from './assets/flags/fr.png';
+import PopularCities from './modules/PopularCities';
 
 const { Header, Sider, Content } = Layout;
 
@@ -52,33 +50,8 @@ class SiderDemo extends React.Component {
               background: '#fff',
               minHeight: 280,
             }}
-          >
-            <Button type="primary" style={{minWidth: '120px'}}>
-              <div>
-                <img src={tr} style={{height: "60%"}} alt={'no flag'} />
-                {' '}
-                {'Istanbul'}
-              </div>
-            </Button>
-            <div style={{marginTop: '5px'}}>
-            <Button type="primary" style={{minWidth: '120px'}}>
-              <div>
-                <img src={eng} style={{height: "60%"}} alt={'no flag'} />
-                {' '}
-                {'London'}
-              </div>
-            </Button>
-            </div>
-            <div style={{marginTop: '5px'}}>
-            <Button type="primary" style={{minWidth: '120px'}}>
-              <div>
-                <img src={fr} style={{height: "60%"}} alt={'no flag'} />
-                {' '}
-                {'Paris'}
-              </div>
-            </Button>
-            </div>
-            
+          > 
+            <PopularCities />
           </Content>
         </Layout>
       </Layout>
