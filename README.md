@@ -14,7 +14,7 @@ $ npm install
 $ npm start
 ```
 
-or:
+or::
 
 ```bash
 $ yarn
