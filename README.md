@@ -15,8 +15,8 @@ $ npm start
 ```
 
 
-or:
-..
+or::
+.
 
 ```bash
 $ yarn
