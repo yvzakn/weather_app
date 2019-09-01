@@ -4,7 +4,7 @@ import PopularCities from './modules/PopularCities';
 
 const { Header, Sider, Content } = Layout;
 
-class SiderDemo extends React.Component {
+class AppLayout extends React.Component {
   state = {
     collapsed: false,
   };
@@ -59,4 +59,4 @@ class SiderDemo extends React.Component {
   }
 }
 
-export default SiderDemo;
+export default AppLayout;
