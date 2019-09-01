@@ -1,4 +1,4 @@
-import { Card, Row, Col, Menu } from "antd";
+import { Card, Row, Col, Menu, Typography } from "antd";
 import React from "react";
 import axios from "axios";
 
@@ -25,10 +25,14 @@ import suncloud from "../assets/weather/suncloud.png";
 class popularCities extends React.Component {
   state = {
     current: null,
-    weather: null
+    weather: null,
+    loadingCard: false
   };
 
   getWeather = async city => {
+    await this.setState({
+      loadingCard: true
+    });
     let response = await axios.get(
       "https://community-open-weather-map.p.rapidapi.com/find",
       {
@@ -42,7 +46,9 @@ class popularCities extends React.Component {
         }
       }
     );
-
+    await this.setState({
+      loadingCard: false
+    });
     return response.data.list[0];
   };
 
@@ -60,10 +66,16 @@ class popularCities extends React.Component {
     return (
       <Row gutter={16}>
         <Col span={4}>
-          <div style={{ marginTop: "5px" }}>
+          <div
+            style={{
+              marginTop: "5px"
+            }}
+          >
             <Menu
               onClick={this.handleMenuClick}
-              style={{ width: 256 }}
+              style={{
+                width: 256
+              }}
               selectedKeys={[this.state.current]}
               mode="inline"
             >
@@ -98,6 +110,7 @@ class popularCities extends React.Component {
 
                 <Menu.Item key="4">Option 4</Menu.Item>
               </SubMenu>
+
               <SubMenu
                 key="asia"
                 title={<p style={{ fontWeight: "bold" }}>{"Asia"}</p>}
@@ -169,10 +182,11 @@ class popularCities extends React.Component {
 
   getWeatherPic = weather => {
     console.log("weather", weather);
+    
     let weatherObj = {
       Clear: clear,
       Clouds: cloudy,
-      Lightning: lightning,
+      Thunderstorm: lightning,
       Rain: rainy,
       Snow: snow,
       Suncloud: suncloud
@@ -181,29 +195,69 @@ class popularCities extends React.Component {
   };
 
   getCard = () => {
+    const { Title } = Typography;
     const { weather } = this.state;
 
     if (weather) {
-      const temperature = weather.main.temp;
+      console.log("weather", weather);
 
+      const temperature = weather.main.temp;
+      const city = weather.name;
       return (
         <Card
+          loading={this.state.loadingCard}
+          bodyStyle={{
+            padding: "0px"
+          }}
           hoverable
           cover={
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center"
+              }}
+            >
               <img
-                style={{ width: "100px", margin: "10px" }}
+                style={{
+                  width: "100px",
+                  margin: "10px"
+                }}
                 alt="no pic"
                 src={this.getWeatherPic(weather.weather[0].main)}
-              />
+              />{" "}
             </div>
           }
         >
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <p style={{ fontWeight: "bold" }}>Temperature:</p>&nbsp;
-            <p>{temperature} F&#176;</p>
-          </div>
-          <div style={{ display: "flex", justifyContent: "center" }}></div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center"
+            }}
+          >
+            <Title level={3}> {city} </Title>{" "}
+          </div>{" "}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center"
+            }}
+          >
+            <p
+              style={{
+                fontWeight: "bold"
+              }}
+            >
+              {" "}
+              Temperature:{" "}
+            </p>
+            &nbsp;<p>{temperature} F&#176;</p>
+          </div>{" "}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center"
+            }}
+          ></div>
         </Card>
       );
     }
@@ -212,7 +266,8 @@ class popularCities extends React.Component {
 
   render() {
     console.log("weather", this.state.weather);
-    return <div>{this.getCityButtons()}</div>;
+    return <div> {this.getCityButtons()} </div>;
+
   }
 }
 
