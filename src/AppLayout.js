@@ -45,11 +45,7 @@ class AppLayout extends React.Component {
                 padding: "10px"
               }}
             >
-              <Switch
-                checkedChildren="On"
-                unCheckedChildren="Off"
-                defaultChecked
-              />
+              <Switch checkedChildren="Metric" unCheckedChildren="Imperial" />
             </p>
             {/* <Icon
               className="trigger"
