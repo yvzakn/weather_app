@@ -175,7 +175,7 @@ class popularCities extends React.Component {
     let weatherObj = {
       Clear: clear,
       Clouds: cloudy,
-      Lightning: lightning,
+      Thunderstorm: lightning,
       Rain: rainy,
       Snow: snow,
       Suncloud: suncloud
