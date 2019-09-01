@@ -37,16 +37,12 @@ class AppLayout extends React.Component {
         </Sider>
         <Layout>
           <Header style={{ background: "#fff", padding: 0 }}>
-            <Icon
-              className="trigger"
-              type={this.state.collapsed ? "menu-unfold" : "menu-fold"}
-              onClick={this.toggle}
-            />
             <p
               style={{
                 display: "flex",
                 justifyContent: "flex-end",
-                alignItems: "flex-start"
+                alignItems: "flex-start",
+                padding: "10px"
               }}
             >
               <Switch
@@ -55,6 +51,11 @@ class AppLayout extends React.Component {
                 defaultChecked
               />
             </p>
+            {/* <Icon
+              className="trigger"
+              type={this.state.collapsed ? "menu-unfold" : "menu-fold"}
+              onClick={this.toggle}
+            /> */}
           </Header>
           <Content
             style={{
