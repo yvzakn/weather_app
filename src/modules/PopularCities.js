@@ -6,6 +6,13 @@ import axios from "axios";
 import tr from "../assets/flags/tr.png";
 import eng from "../assets/flags/eng.png";
 import fr from "../assets/flags/fr.png";
+import tha from "../assets/flags/tha.png";
+import uae from "../assets/flags/uae.png";
+import sgp from "../assets/flags/sgp.png";
+import usa from "../assets/flags/usa.png";
+import kr from "../assets/flags/kr.png";
+import jpn from "../assets/flags/jpn.png";
+import mys from "../assets/flags/mys.png";
 
 // weather
 import clear from "../assets/weather/clear.png";
@@ -74,104 +81,108 @@ class popularCities extends React.Component {
             >
               <SubMenu
                 key="europe"
-                title={
-                  <div>
-                    <img
-                      src={"avrupabayragi"}
-                      style={{
-                        height: "60%"
-                      }}
-                      alt={"no flag"}
-                    />{" "}
-                    {"Europe"}{" "}
-                  </div>
-                }
+                title={<p style={{ fontWeight: "bold" }}>Europe</p>}
               >
                 <Menu.Item key="istanbul">
                   <div>
-                    <img
-                      src={tr}
-                      style={{
-                        height: "60%"
-                      }}
-                      alt={"no flag"}
-                    />{" "}
-                    {"Istanbul"}{" "}
-                  </div>{" "}
-                </Menu.Item>{" "}
+                    <img src={tr} style={{ height: "60%" }} alt={"no flag"} />{" "}
+                    {"Istanbul"}
+                  </div>
+                </Menu.Item>
+                <Menu.Item key="antalya">
+                  <div>
+                    <img src={tr} style={{ height: "60%" }} alt={"no flag"} />{" "}
+                    {"Antalya"}
+                  </div>
+                </Menu.Item>
                 <Menu.Item key="london">
                   <div>
-                    <img
-                      src={eng}
-                      style={{
-                        height: "60%"
-                      }}
-                      alt={"no flag"}
-                    />{" "}
-                    {"London"}{" "}
-                  </div>{" "}
-                </Menu.Item>{" "}
+                    <img src={eng} style={{ height: "60%" }} alt={"no flag"} />{" "}
+                    {"London"}
+                  </div>
+                </Menu.Item>
                 <Menu.Item key="paris">
                   <div>
-                    <img
-                      src={fr}
-                      style={{
-                        height: "60%"
-                      }}
-                      alt={"no flag"}
-                    />{" "}
-                    {"Paris"}{" "}
-                  </div>{" "}
-                </Menu.Item>{" "}
-                <Menu.Item key="4"> Option 4 </Menu.Item>{" "}
-              </SubMenu>{" "}
+                    <img src={fr} style={{ height: "60%" }} alt={"no flag"} />{" "}
+                    {"Paris"}
+                  </div>
+                </Menu.Item>
+
+                <Menu.Item key="4">Option 4</Menu.Item>
+              </SubMenu>
+
               <SubMenu
                 key="asia"
-                title={
-                  <div>
-                    <img
-                      src={"asyabayragi"}
-                      style={{
-                        height: "60%"
-                      }}
-                      alt={"no flag"}
-                    />{" "}
-                    {"Asia"}{" "}
-                  </div>
-                }
+                title={<p style={{ fontWeight: "bold" }}>{"Asia"}</p>}
               >
-                <Menu.Item key="5"> Option 5 </Menu.Item>{" "}
-                <Menu.Item key="6"> Option 6 </Menu.Item>{" "}
-              </SubMenu>{" "}
+                <Menu.Item key="bangkok">
+                  <div>
+                    <img src={tha} style={{ height: "60%" }} alt={"no flag"} />{" "}
+                    {"Bangkok"}
+                  </div>
+                </Menu.Item>
+
+                <Menu.Item key="malaysia">
+                  <div>
+                    <img src={mys} style={{ height: "60%" }} alt={"no flag"} />{" "}
+                    {"Malaysia"}
+                  </div>
+                </Menu.Item>
+
+                <Menu.Item key="japan">
+                  <div>
+                    <img src={jpn} style={{ height: "60%" }} alt={"no flag"} />{" "}
+                    {"Japan"}
+                  </div>
+                </Menu.Item>
+
+                <Menu.Item key="korea">
+                  <div>
+                    <img src={kr} style={{ height: "60%" }} alt={"no flag"} />{" "}
+                    {"Korea"}
+                  </div>
+                </Menu.Item>
+
+                <Menu.Item key="dubai">
+                  <div>
+                    <img src={uae} style={{ height: "60%" }} alt={"no flag"} />{" "}
+                    {"Dubai"}
+                  </div>
+                </Menu.Item>
+
+                <Menu.Item key="singapore ">
+                  <div>
+                    <img src={sgp} style={{ height: "60%" }} alt={"no flag"} />{" "}
+                    {"Singapore "}
+                  </div>
+                </Menu.Item>
+              </SubMenu>
               <SubMenu
                 key="africa"
-                title={
-                  <div>
-                    <img
-                      src={"africaflag"}
-                      style={{
-                        height: "60%"
-                      }}
-                      alt={"no flag"}
-                    />{" "}
-                    {"Africa"}{" "}
-                  </div>
-                }
+                title={<p style={{ fontWeight: "bold" }}>Africa</p>}
+              ></SubMenu>
+              <SubMenu
+                key="northAmerica"
+                title={<p style={{ fontWeight: "bold" }}>{"North America"}</p>}
               >
-                <Menu.Item key="9"> Option 9 </Menu.Item>{" "}
-                <Menu.Item key="10"> Option 10 </Menu.Item>{" "}
-                <Menu.Item key="11"> Option 11 </Menu.Item>{" "}
-                <Menu.Item key="12"> Option 12 </Menu.Item>{" "}
-              </SubMenu>{" "}
-            </Menu>{" "}
-          </div>{" "}
-        </Col>{" "}
-        <Col span={20}> {this.getCard()} </Col>{" "}
+                <Menu.Item key="new york">
+                  <div>
+                    <img src={usa} style={{ height: "60%" }} alt={"no flag"} />{" "}
+                    {"New York"}
+                  </div>
+                </Menu.Item>
+              </SubMenu>
+            </Menu>
+          </div>
+        </Col>
+        <Col span={20}>{this.getCard()}</Col>
       </Row>
     );
   };
 
   getWeatherPic = weather => {
+    console.log("weather", weather);
+    
     let weatherObj = {
       Clear: clear,
       Clouds: cloudy,
@@ -254,7 +265,9 @@ class popularCities extends React.Component {
   };
 
   render() {
+    console.log("weather", this.state.weather);
     return <div> {this.getCityButtons()} </div>;
+
   }
 }
 
