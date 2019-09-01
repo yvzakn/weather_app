@@ -1,4 +1,4 @@
-import { Card, Row, Col, Menu, Typography } from "antd";
+import { Card, Row, Col, Menu, Typography, Switch, Icon } from "antd";
 import React from "react";
 import axios from "axios";
 
@@ -182,7 +182,7 @@ class popularCities extends React.Component {
 
   getWeatherPic = weather => {
     console.log("weather", weather);
-    
+
     let weatherObj = {
       Clear: clear,
       Clouds: cloudy,
@@ -267,7 +267,6 @@ class popularCities extends React.Component {
   render() {
     console.log("weather", this.state.weather);
     return <div> {this.getCityButtons()} </div>;
-
   }
 }
 
