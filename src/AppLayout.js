@@ -6,7 +6,8 @@ const { Header, Sider, Content } = Layout;
 
 class AppLayout extends React.Component {
   state = {
-    collapsed: false
+    collapsed: false,
+    isMetric: false
   };
 
   toggle = () => {
@@ -15,7 +16,13 @@ class AppLayout extends React.Component {
     });
   };
 
+  unitChange = checked => {
+    console.log("checked", checked);
+    this.setState({ isMetric: checked });
+  };
+
   render() {
+    const { isMetric } = this.state;
     return (
       <Layout style={{ height: "100%" }}>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
@@ -45,7 +52,12 @@ class AppLayout extends React.Component {
                 padding: "10px"
               }}
             >
-              <Switch checkedChildren="Metric" unCheckedChildren="Imperial" />
+              <Switch
+                onChange={this.unitChange}
+                style={{ minWidth: "75px" }}
+                checkedChildren="Metric"
+                unCheckedChildren="Imperial"
+              />
             </p>
             {/* <Icon
               className="trigger"
@@ -61,7 +73,7 @@ class AppLayout extends React.Component {
               minHeight: 280
             }}
           >
-            <PopularCities />
+            <PopularCities isMetric={isMetric} />
           </Content>
         </Layout>
       </Layout>

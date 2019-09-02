@@ -1,4 +1,4 @@
-import { Card, Row, Col, Menu, Typography, Switch, Icon } from "antd";
+import { Card, Row, Col, Menu, Typography } from "antd";
 import React from "react";
 import axios from "axios";
 
@@ -26,12 +26,22 @@ class popularCities extends React.Component {
   state = {
     current: null,
     weather: null,
-    loadingCard: false
+    loadingCard: false,
+    currentCity: null
   };
 
-  getWeather = async city => {
+  componentWillReceiveProps(nextProps) {
+    const { currentCity } = this.state;
+    if (currentCity) {
+      const unit = this.getUnit(nextProps.isMetric);
+      this.getWeather(currentCity, unit);
+    }
+  }
+
+  getWeather = async (city, unit) => {
     await this.setState({
-      loadingCard: true
+      loadingCard: true,
+      currentCity: city
     });
     let response = await axios.get(
       "https://community-open-weather-map.p.rapidapi.com/find",
@@ -42,7 +52,7 @@ class popularCities extends React.Component {
         },
         params: {
           q: city,
-          units: "imperial"
+          units: unit ? unit : this.getUnit()
         }
       }
     );
@@ -50,6 +60,16 @@ class popularCities extends React.Component {
       loadingCard: false
     });
     return response.data.list[0];
+  };
+
+  getUnit = () => {
+    const { isMetric } = this.props;
+
+    if (isMetric) {
+      return "metric";
+    } else {
+      return "imperial";
+    }
   };
 
   handleMenuClick = async e => {
@@ -197,6 +217,7 @@ class popularCities extends React.Component {
   getCard = () => {
     const { Title } = Typography;
     const { weather } = this.state;
+    const { isMetric } = this.props;
 
     if (weather) {
       console.log("weather", weather);
@@ -250,7 +271,10 @@ class popularCities extends React.Component {
               {" "}
               Temperature:{" "}
             </p>
-            &nbsp;<p>{temperature} F&#176;</p>
+            &nbsp;
+            <p>
+              {temperature} {isMetric ? "C" : "F"}&#176;
+            </p>
           </div>{" "}
           <div
             style={{
@@ -265,6 +289,7 @@ class popularCities extends React.Component {
   };
 
   render() {
+    console.log("this.state.currentCity", this.state.currentCity);
     console.log("weather", this.state.weather);
     return <div> {this.getCityButtons()} </div>;
   }
