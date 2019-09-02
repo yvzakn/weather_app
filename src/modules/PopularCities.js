@@ -1,4 +1,4 @@
-import { Card, Row, Col, Menu, Typography } from "antd";
+import { Card, Row, Col, Menu, Typography, Spin } from "antd";
 import React from "react";
 import axios from "axios";
 
@@ -215,18 +215,13 @@ class popularCities extends React.Component {
   };
 
   getCard = () => {
-    const { Title } = Typography;
-    const { weather } = this.state;
-    const { isMetric } = this.props;
+    const { weather, loadingCard } = this.state;
 
     if (weather) {
       console.log("weather", weather);
 
-      const temperature = weather.main.temp;
-      const city = weather.name;
       return (
         <Card
-          loading={this.state.loadingCard}
           bodyStyle={{
             padding: "0px"
           }}
@@ -249,43 +244,58 @@ class popularCities extends React.Component {
             </div>
           }
         >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center"
-            }}
-          >
-            <Title level={3}> {city} </Title>{" "}
-          </div>{" "}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center"
-            }}
-          >
-            <p
-              style={{
-                fontWeight: "bold"
-              }}
-            >
-              {" "}
-              Temperature:{" "}
-            </p>
-            &nbsp;
-            <p>
-              {temperature} {isMetric ? "C" : "F"}&#176;
-            </p>
-          </div>{" "}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center"
-            }}
-          ></div>
+          <Spin spinning={loadingCard}>{this.getCardContent()}</Spin>
         </Card>
       );
     }
     return null;
+  };
+
+  getCardContent = () => {
+    const { Title } = Typography;
+    const { isMetric } = this.props;
+    const { weather } = this.state;
+
+    const temperature = weather.main.temp;
+    const city = weather.name;
+
+    return (
+      <div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center"
+          }}
+        >
+          <Title level={3}> {city} </Title>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center"
+          }}
+        >
+          <p
+            style={{
+              fontWeight: "bold"
+            }}
+          >
+            {" "}
+            Temperature:{" "}
+          </p>
+          &nbsp;
+          <p>
+            {temperature} {isMetric ? "C" : "F"}&#176;
+          </p>
+        </div>{" "}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center"
+          }}
+        ></div>
+      </div>
+    );
   };
 
   render() {
